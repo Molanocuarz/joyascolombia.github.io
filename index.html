@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joyas Colombia — Cuarzos & Esmeraldas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #1a4a2e;
+      --verde-medio: #2d7a4f;
+      --verde-claro: #a8d5b5;
+      --crema: #f7f3ec;
+      --dorado: #b8924a;
+      --dorado-claro: #e8d5a3;
+      --texto: #1c1c1c;
+      --texto-suave: #5a5a4a;
+      --blanco: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--crema);
+      color: var(--texto);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(247, 243, 236, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184, 146, 74, 0.2);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--verde);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--texto-suave);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--verde); }
+
+    .nav-carrito {
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--dorado);
+      text-decoration: none; border: 1px solid var(--dorado);
+      padding: 0.45rem 1.2rem; transition: all 0.2s;
+    }
+    .nav-carrito:hover { background: var(--dorado); color: var(--blanco); }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 7rem 5vw 4rem;
+      background: linear-gradient(160deg, #e8f0eb 0%, var(--crema) 60%);
+      position: relative; overflow: hidden;
+    }
+
+    .hero-deco {
+      position: absolute; opacity: 0.06;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 25vw, 22rem);
+      font-weight: 300; color: var(--verde);
+      letter-spacing: -0.04em;
+      pointer-events: none; user-select: none;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      white-space: nowrap;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 1.5rem;
+    }
+
+    .hero-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--verde); margin-bottom: 1.5rem;
+    }
+    .hero-titulo em { font-style: italic; color: var(--dorado); }
+
+    .hero-subtitulo {
+      max-width: 480px; font-size: 1rem; font-weight: 300;
+      color: var(--texto-suave); margin-bottom: 3rem; line-height: 1.8;
+    }
+
+    .btn-primario {
+      display: inline-block;
+      background: var(--verde);
+      color: var(--blanco);
+      padding: 0.9rem 2.8rem;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-primario:hover { background: var(--verde-medio); transform: translateY(-2px); }
+
+    .btn-secundario {
+      display: inline-block;
+      border: 1px solid var(--dorado);
+      color: var(--dorado);
+      padding: 0.9rem 2.8rem;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.25s; margin-left: 1rem;
+    }
+    .btn-secundario:hover { background: var(--dorado); color: var(--blanco); }
+
+    /* ── FRANJA ── */
+    .franja {
+      background: var(--verde);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.9rem;
+    }
+    .franja span { color: var(--dorado-claro); margin: 0 1.5rem; }
+
+    /* ── SECCIÓN COMÚN ── */
+    .seccion { padding: 6rem 5vw; }
+    .seccion-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400; color: var(--verde); margin-bottom: 0.5rem;
+    }
+    .seccion-subtitulo {
+      font-size: 0.85rem; color: var(--texto-suave); font-weight: 300;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3.5rem;
+    }
+    .cabecera-seccion { max-width: 560px; }
+
+    /* ── CATEGORÍAS ── */
+    #categorias { background: var(--blanco); }
+    .grid-cat {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+
+    .cat-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      height: 380px;
+      text-decoration: none;
+    }
+    .cat-card-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.5s ease;
+    }
+    .cat-esmeralda .cat-card-bg { background: linear-gradient(135deg, #0d3320 0%, #1a5c38 50%, #2d7a4f 100%); }
+    .cat-cuarzo .cat-card-bg    { background: linear-gradient(135deg, #6b7fa8 0%, #a8b8d0 50%, #d4dde8 100%); }
+    .cat-mixto .cat-card-bg     { background: linear-gradient(135deg, #4a3520 0%, #8a6540 50%, #b8924a 100%); }
+
+    .cat-card:hover .cat-card-bg { transform: scale(1.05); }
+
+    .cat-gema {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      font-size: 5rem;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+      transition: transform 0.4s ease;
+    }
+    .cat-card:hover .cat-gema { transform: translate(-50%, -65%) scale(1.08); }
+
+    .cat-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.8rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    }
+    .cat-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 400;
+      color: var(--blanco); display: block; margin-bottom: 0.3rem;
+    }
+    .cat-desc { font-size: 0.8rem; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; }
+
+    /* ── PRODUCTOS ── */
+    #productos { background: var(--crema); }
+
+    .filtros {
+      display: flex; gap: 0.8rem; margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .filtro-btn {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.5rem 1.4rem; border: 1px solid #ccc;
+      background: transparent; cursor: pointer; transition: all 0.2s;
+      font-family: 'Jost', sans-serif;
+    }
+    .filtro-btn.activo,
+    .filtro-btn:hover { background: var(--verde); color: var(--blanco); border-color: var(--verde); }
+
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .producto-card {
+      background: var(--blanco);
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: none;
+    }
+    .producto-card.visible { display: block; }
+    .producto-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+    .prod-imagen {
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .prod-badge {
+      position: absolute; top: 12px; left: 12px;
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+    }
+    .badge-nuevo  { background: var(--verde); color: var(--blanco); }
+    .badge-oferta { background: var(--dorado); color: var(--blanco); }
+
+    .prod-info { padding: 1.4rem 1.2rem; }
+    .prod-origen {
+      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 0.3rem;
+    }
+    .prod-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 500; color: var(--texto);
+      margin-bottom: 0.4rem;
+    }
+    .prod-descripcion {
+      font-size: 0.82rem; color: var(--texto-suave); font-weight: 300;
+      margin-bottom: 1rem; line-height: 1.6;
+    }
+    .prod-pie {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .prod-precio {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 500; color: var(--verde);
+    }
+    .prod-precio-antes {
+      font-size: 0.85rem; color: #aaa; text-decoration: line-through; margin-right: 0.4rem;
+    }
+    .btn-agregar {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--verde); color: var(--blanco); border: none;
+      padding: 0.6rem 1.2rem; cursor: pointer;
+      transition: all 0.2s; font-family: 'Jost', sans-serif;
+    }
+    .btn-agregar:hover { background: var(--verde-medio); }
+
+    /* ── SOBRE ── */
+    #sobre {
+      background: var(--verde);
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+    .sobre-contenido {
+      padding: 5rem 5vw;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .sobre-tag {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--dorado-claro); margin-bottom: 1.5rem;
+    }
+    .sobre-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300; color: var(--blanco);
+      line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .sobre-texto {
+      font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.75);
+      line-height: 1.9; margin-bottom: 2rem; max-width: 440px;
+    }
+    .sobre-stats {
+      display: flex; gap: 3rem;
+    }
+    .stat-numero {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 400; color: var(--dorado-claro);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .sobre-visual {
+      background: linear-gradient(135deg, #0d3320 0%, #1a4a2e 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9rem;
+      position: relative; overflow: hidden;
+    }
+    .sobre-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(45,122,79,0.4), transparent 70%);
+    }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { background: var(--blanco); text-align: center; }
+    .testimonios-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .testimonio-card {
+      padding: 2.5rem 2rem; border: 1px solid #eee;
+      transition: box-shadow 0.2s;
+    }
+    .testimonio-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .estrellas { color: var(--dorado); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .testimonio-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400; font-style: italic;
+      color: var(--texto); margin-bottom: 1.5rem; line-height: 1.7;
+    }
+    .testimonio-nombre { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--texto-suave); }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--crema); }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+    .form-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; margin-bottom: 2rem; color: var(--verde);
+    }
+    .form-grupo { margin-bottom: 1.2rem; }
+    .form-grupo label {
+      display: block; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--texto-suave); margin-bottom: 0.5rem;
+    }
+    .form-grupo input,
+    .form-grupo textarea,
+    .form-grupo select {
+      width: 100%; padding: 0.9rem 1rem;
+      border: 1px solid #ddd; background: var(--blanco);
+      font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--texto);
+      outline: none; transition: border-color 0.2s; resize: none;
+    }
+    .form-grupo input:focus,
+    .form-grupo textarea:focus,
+    .form-grupo select:focus { border-color: var(--verde); }
+    .form-submit {
+      background: var(--verde); color: var(--blanco); border: none;
+      padding: 1rem 3rem; font-family: 'Jost', sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s; margin-top: 0.5rem;
+      width: 100%;
+    }
+    .form-submit:hover { background: var(--verde-medio); }
+
+    .info-contacto-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; margin-bottom: 1rem; color: var(--verde);
+    }
+    .info-contacto-texto {
+      font-size: 0.9rem; font-weight: 300; color: var(--texto-suave);
+      line-height: 1.9; margin-bottom: 2.5rem;
+    }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .info-icono {
+      width: 42px; height: 42px; background: var(--verde);
+      color: var(--blanco); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .info-item-texto strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto); margin-bottom: 0.2rem; }
+    .info-item-texto span { font-size: 0.88rem; color: var(--texto-suave); font-weight: 300; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--texto);
+      color: rgba(255,255,255,0.6);
+      padding: 3.5rem 5vw 2rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: var(--blanco); margin-bottom: 1rem;
+    }
+    .footer-desc { font-size: 0.85rem; font-weight: 300; line-height: 1.8; }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dorado-claro); margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--blanco); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem;
+    }
+
+    /* ── CARRITO MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200; display: none;
+      align-items: flex-start; justify-content: flex-end;
+    }
+    .modal-overlay.abierto { display: flex; }
+    .carrito-panel {
+      background: var(--blanco);
+      width: min(420px, 100vw);
+      height: 100vh; overflow-y: auto;
+      padding: 2rem;
+      display: flex; flex-direction: column;
+    }
+    .carrito-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 2rem; padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .carrito-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--verde);
+    }
+    .cerrar-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; color: var(--texto-suave);
+    }
+    .carrito-items { flex: 1; }
+    .carrito-vacio { text-align: center; color: var(--texto-suave); padding: 3rem 0; font-size: 0.9rem; }
+    .carrito-item {
+      display: flex; gap: 1rem; padding: 1rem 0;
+      border-bottom: 1px solid #f0f0f0; align-items: center;
+    }
+    .item-emoji { font-size: 2.5rem; }
+    .item-info { flex: 1; }
+    .item-nombre { font-size: 0.9rem; font-weight: 500; }
+    .item-precio { font-size: 0.85rem; color: var(--dorado); }
+    .item-eliminar { background: none; border: none; cursor: pointer; color: #ccc; font-size: 1.1rem; }
+    .item-eliminar:hover { color: #e00; }
+    .carrito-total {
+      border-top: 2px solid var(--verde);
+      padding-top: 1.5rem; margin-top: 1rem;
+    }
+    .total-fila { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .total-numero { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--verde); font-weight: 500; }
+    .btn-checkout {
+      width: 100%; background: var(--verde); color: var(--blanco);
+      border: none; padding: 1rem; margin-top: 1.5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-checkout:hover { background: var(--verde-medio); }
+
+    /* ── NOTIFICACIÓN ── */
+    .notif {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--verde); color: var(--blanco);
+      padding: 1rem 1.5rem; font-size: 0.85rem;
+      transform: translateY(100px); opacity: 0;
+      transition: all 0.3s; z-index: 300;
+    }
+    .notif.show { transform: translateY(0); opacity: 1; }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #sobre { grid-template-columns: 1fr; }
+      .sobre-visual { height: 220px; }
+      .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-titulo { font-size: clamp(2.5rem, 10vw, 4rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#inicio">Joyas Colombia</a>
+  <ul class="nav-links">
+    <li><a href="#categorias">Colecciones</a></li>
+    <li><a href="#productos">Tienda</a></li>
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-carrito" href="#" onclick="abrirCarrito(event)">
+    🛒 Carrito (<span id="cuenta-carrito">0</span>)
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-deco">GEM</div>
+  <p class="hero-tag">Colombia · Origen 100% natural</p>
+  <h1 class="hero-titulo">Cuarzos &amp;<br /><em>Esmeraldas</em></h1>
+  <p class="hero-subtitulo">
+    Piedras preciosas extraídas directamente de las minas colombianas.
+    Cada gema, única. Cada pieza, una historia de la tierra.
+  </p>
+  <div>
+    <a class="btn-primario" href="#productos">Ver colección</a>
+    <a class="btn-secundario" href="#sobre">Nuestra historia</a>
+  </div>
+</section>
+
+<!-- FRANJA -->
+<div class="franja">
+  ✦ Envío gratis en pedidos sobre $150.000
+  <span>|</span>
+  Certificado de autenticidad incluido
+  <span>|</span>
+  Devolución en 15 días
+</div>
+
+<!-- CATEGORÍAS -->
+<section id="categorias" class="seccion">
+  <div class="cabecera-seccion">
+    <h2 class="seccion-titulo">Colecciones</h2>
+    <p class="seccion-subtitulo">Explora por tipo de piedra</p>
+  </div>
+  <div class="grid-cat">
+    <a class="cat-card cat-esmeralda" href="#productos" onclick="filtrar('esmeralda')">
+      <div class="cat-card-bg"></div>
+      <div class="cat-gema">💚</div>
+      <div class="cat-info">
+        <span class="cat-nombre">Esmeraldas</span>
+        <span class="cat-desc">Muzo · Chivor · Coscuez</span>
+      </div>
+    </a>
+    <a class="cat-card cat-cuarzo" href="#productos" onclick="filtrar('cuarzo')">
+      <div class="cat-card-bg"></div>
+      <div class="cat-gema">🔮</div>
+      <div class="cat-info">
+        <span class="cat-nombre">Cuarzos</span>
+        <span class="cat-desc">Rosa · Ahumado · Citrino</span>
+      </div>
+    </a>
+    <a class="cat-card cat-mixto" href="#productos" onclick="filtrar('todos')">
+      <div class="cat-card-bg"></div>
+      <div class="cat-gema">✨</div>
+      <div class="cat-info">
+        <span class="cat-nombre">Especiales</span>
+        <span class="cat-desc">Piezas únicas y artesanales</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="seccion">
+  <div class="cabecera-seccion">
+    <h2 class="seccion-titulo">Tienda</h2>
+    <p class="seccion-subtitulo">Piezas seleccionadas a mano</p>
+  </div>
+
+  <div class="filtros">
+    <button class="filtro-btn activo" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filtro-btn" onclick="filtrar('esmeralda', this)">Esmeraldas</button>
+    <button class="filtro-btn" onclick="filtrar('cuarzo', this)">Cuarzos</button>
+    <button class="filtro-btn" onclick="filtrar('especial', this)">Especiales</button>
+  </div>
+
+  <div class="grid-productos" id="grid-productos">
+
+    <div class="producto-card visible" data-cat="esmeralda">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#0a2a18,#1a5c38);">
+        💚
+        <span class="prod-badge badge-nuevo">Nuevo</span>
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Muzo, Boyacá</p>
+        <h3 class="prod-nombre">Esmeralda Natural Bruta</h3>
+        <p class="prod-descripcion">Cristal en bruto de alta pureza, color verde intenso característico de la región de Muzo.</p>
+        <div class="prod-pie">
+          <div>
+            <span class="prod-precio-antes">$380.000</span>
+            <span class="prod-precio">$295.000</span>
+          </div>
+          <button class="btn-agregar" onclick="agregarCarrito('Esmeralda Natural Bruta', 295000, '💚')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="cuarzo">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#5a3a6a,#a875c4);">
+        💜
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Santander, Colombia</p>
+        <h3 class="prod-nombre">Cuarzo Amatista Punta</h3>
+        <p class="prod-descripcion">Punto de cristal de amatista natural, tonos violetas profundos, ideal para decoración y meditación.</p>
+        <div class="prod-pie">
+          <span class="prod-precio">$120.000</span>
+          <button class="btn-agregar" onclick="agregarCarrito('Cuarzo Amatista Punta', 120000, '💜')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="cuarzo">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#5a3030,#c48075);">
+        🌹
+        <span class="prod-badge badge-nuevo">Popular</span>
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Región Andina</p>
+        <h3 class="prod-nombre">Cuarzo Rosa Pulido</h3>
+        <p class="prod-descripcion">Piedra pulida de cuarzo rosa, forma libre, superficie suave al tacto. Energía de amor y armonía.</p>
+        <div class="prod-pie">
+          <span class="prod-precio">$85.000</span>
+          <button class="btn-agregar" onclick="agregarCarrito('Cuarzo Rosa Pulido', 85000, '🌹')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="esmeralda">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#0a3022,#2d8a5a);">
+        💎
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Chivor, Boyacá</p>
+        <h3 class="prod-nombre">Esmeralda Facetada Premium</h3>
+        <p class="prod-descripcion">Esmeralda tallada en corte oval, claridad excepcional. Con certificado gemológico incluido.</p>
+        <div class="prod-pie">
+          <span class="prod-precio">$1.850.000</span>
+          <button class="btn-agregar" onclick="agregarCarrito('Esmeralda Facetada Premium', 1850000, '💎')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="cuarzo">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#4a3a10,#c49a30);">
+        🌟
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Boyacá, Colombia</p>
+        <h3 class="prod-nombre">Cuarzo Citrino Natural</h3>
+        <p class="prod-descripcion">Citrino sin tratamiento térmico, color amarillo dorado natural. Piedra de abundancia y claridad mental.</p>
+        <div class="prod-pie">
+          <span class="prod-precio">$145.000</span>
+          <button class="btn-agregar" onclick="agregarCarrito('Cuarzo Citrino Natural', 145000, '🌟')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="especial">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#1a1a2a,#3a3a6a);">
+        🖤
+        <span class="prod-badge badge-oferta">Especial</span>
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Origen nacional</p>
+        <h3 class="prod-nombre">Cuarzo Ahumado Geoda</h3>
+        <p class="prod-descripcion">Geoda de cuarzo ahumado, sección pulida con interior cristalizado. Pieza decorativa única.</p>
+        <div class="prod-pie">
+          <div>
+            <span class="prod-precio-antes">$220.000</span>
+            <span class="prod-precio">$175.000</span>
+          </div>
+          <button class="btn-agregar" onclick="agregarCarrito('Cuarzo Ahumado Geoda', 175000, '🖤')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="esmeralda">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#0d2a1a,#1a6040);">
+        🍀
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Coscuez, Boyacá</p>
+        <h3 class="prod-nombre">Set 3 Esmeraldas Brutas</h3>
+        <p class="prod-descripcion">Colección de tres esmeraldas en bruto de diferentes tamaños. Perfectas para coleccionistas y joyeros.</p>
+        <div class="prod-pie">
+          <span class="prod-precio">$480.000</span>
+          <button class="btn-agregar" onclick="agregarCarrito('Set 3 Esmeraldas Brutas', 480000, '🍀')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="producto-card visible" data-cat="especial">
+      <div class="prod-imagen" style="background: linear-gradient(135deg,#2a1a0a,#7a4a20);">
+        🪨
+        <span class="prod-badge badge-nuevo">Artesanal</span>
+      </div>
+      <div class="prod-info">
+        <p class="prod-origen">Artesanos colombianos</p>
+        <h3 class="prod-nombre">Collar Esmeralda Artesanal</h3>
+        <p class="prod-descripcion">Collar con esmeralda colombiana en montura de plata 950, elaborado por artesanos de Bogotá.</p>
+        <div class="prod-pie">
+          <span class="prod-precio">$650.000</span>
+          <button class="btn-agregar" onclick="agregarCarrito('Collar Esmeralda Artesanal', 650000, '🪨')">+ Carrito</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-contenido">
+    <p class="sobre-tag">Nuestra historia</p>
+    <h2 class="sobre-titulo">Directamente<br />de la tierra<br />colombiana</h2>
+    <p class="sobre-texto">
+      Trabajamos directamente con mineros artesanales y cooperativas de las regiones de Muzo, Chivor y Coscuez en Boyacá — el corazón esmeraldero del mundo. Cada piedra que ofrecemos tiene trazabilidad completa y cumple con prácticas de minería responsable.
+    </p>
+    <div class="sobre-stats">
+      <div>
+        <span class="stat-numero">15+</span>
+        <span class="stat-label">Años de experiencia</span>
+      </div>
+      <div>
+        <span class="stat-numero">2.400+</span>
+        <span class="stat-label">Piezas vendidas</span>
+      </div>
+      <div>
+        <span class="stat-numero">100%</span>
+        <span class="stat-label">Origen certificado</span>
+      </div>
+    </div>
+  </div>
+  <div class="sobre-visual">💚</div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="seccion">
+  <div class="cabecera-seccion" style="margin: 0 auto 3.5rem; text-align: center;">
+    <h2 class="seccion-titulo">Lo que dicen nuestros clientes</h2>
+    <p class="seccion-subtitulo">Más de 2.000 familias con nuestras piedras</p>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <div class="estrellas">★★★★★</div>
+      <p class="testimonio-texto">"La esmeralda que compré es absolutamente hermosa. El certificado de autenticidad me dio mucha tranquilidad. Llegó en embalaje perfecto."</p>
+      <p class="testimonio-nombre">— Mariana T., Bogotá</p>
+    </div>
+    <div class="testimonio-card">
+      <div class="estrellas">★★★★★</div>
+      <p class="testimonio-texto">"Los cuarzos son de una calidad increíble. Se nota que son piezas seleccionadas con cuidado. Ya es mi tercera compra y siempre quedo feliz."</p>
+      <p class="testimonio-nombre">— Carlos R., Medellín</p>
+    </div>
+    <div class="testimonio-card">
+      <div class="estrellas">★★★★★</div>
+      <p class="testimonio-texto">"Compré un set de esmeraldas brutas para mi taller de joyería. La trazabilidad y pureza son excepcionales. Los recomiendo totalmente."</p>
+      <p class="testimonio-nombre">— Lucía V., Cali</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="seccion">
+  <div class="contacto-grid">
+    <div>
+      <h2 class="form-titulo">Escríbenos</h2>
+      <form onsubmit="enviarForm(event)">
+        <div class="form-grupo">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tu nombre" required />
+        </div>
+        <div class="form-grupo">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="correo@ejemplo.com" required />
+        </div>
+        <div class="form-grupo">
+          <label>Asunto</label>
+          <select>
+            <option>Consulta sobre productos</option>
+            <option>Pedido personalizado</option>
+            <option>Envíos y pagos</option>
+            <option>Certificados y autenticidad</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label>Mensaje</label>
+          <textarea rows="5" placeholder="Cuéntanos qué necesitas..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Enviar mensaje</button>
+      </form>
+    </div>
+    <div>
+      <h2 class="info-contacto-titulo">Información de contacto</h2>
+      <p class="info-contacto-texto">
+        Atendemos pedidos de toda Colombia y realizamos envíos internacionales. Cada consulta es respondida en menos de 24 horas.
+      </p>
+      <div class="info-item">
+        <div class="info-icono">📍</div>
+        <div class="info-item-texto">
+          <strong>Ubicación</strong>
+          <span>Bogotá, Colombia<br />Barrio La Candelaria</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icono">📱</div>
+        <div class="info-item-texto">
+          <strong>WhatsApp</strong>
+          <span>+57 300 000 0000</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icono">✉️</div>
+        <div class="info-item-texto">
+          <strong>Correo</strong>
+          <span>hola@joyascolombia.com</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icono">⏰</div>
+        <div class="info-item-texto">
+          <strong>Horario de atención</strong>
+          <span>Lunes a viernes, 8am – 6pm<br />Sábados, 9am – 2pm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Joyas Colombia 💚</div>
+      <p class="footer-desc">Cuarzos y esmeraldas colombianas con certificado de origen. Directamente de las minas al mundo, con responsabilidad y autenticidad.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#productos">Esmeraldas</a></li>
+        <li><a href="#productos">Cuarzos</a></li>
+        <li><a href="#productos">Especiales</a></li>
+        <li><a href="#productos">Colecciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Información</h4>
+      <ul>
+        <li><a href="#sobre">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#">Envíos y pagos</a></li>
+        <li><a href="#">Política de devolución</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Joyas Colombia. Todos los derechos reservados.</span>
+    <span>Hecho con 💚 en Colombia</span>
+  </div>
+</footer>
+
+<!-- CARRITO MODAL -->
+<div class="modal-overlay" id="modal-carrito" onclick="cerrarCarrito(event)">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <h2 class="carrito-titulo">Tu carrito</h2>
+      <button class="cerrar-btn" onclick="cerrarCarrito()">✕</button>
+    </div>
+    <div class="carrito-items" id="carrito-items">
+      <p class="carrito-vacio">Tu carrito está vacío 🛒</p>
+    </div>
+    <div class="carrito-total" id="carrito-total" style="display:none">
+      <div class="total-fila">
+        <span>Subtotal</span>
+        <span id="total-precio" class="total-numero">$0</span>
+      </div>
+      <div class="total-fila" style="font-size:0.8rem; color:#aaa;">
+        <span>Envío gratis en compras sobre $150.000</span>
+      </div>
+      <button class="btn-checkout" onclick="checkout()">Proceder al pago →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICACIÓN -->
+<div class="notif" id="notif"></div>
+
+<script>
+  let carrito = [];
+
+  function agregarCarrito(nombre, precio, emoji) {
+    const idx = carrito.findIndex(i => i.nombre === nombre);
+    if (idx > -1) {
+      carrito[idx].cantidad++;
+    } else {
+      carrito.push({ nombre, precio, emoji, cantidad: 1 });
+    }
+    actualizarCarrito();
+    mostrarNotif('✓ ' + nombre + ' agregado al carrito');
+  }
+
+  function eliminarItem(i) {
+    carrito.splice(i, 1);
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const total = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
+    document.getElementById('cuenta-carrito').textContent = carrito.reduce((s,i) => s + i.cantidad, 0);
+
+    const cont = document.getElementById('carrito-items');
+    const totDiv = document.getElementById('carrito-total');
+
+    if (carrito.length === 0) {
+      cont.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío 🛒</p>';
+      totDiv.style.display = 'none';
+      return;
+    }
+
+    cont.innerHTML = carrito.map((item, i) => `
+      <div class="carrito-item">
+        <span class="item-emoji">${item.emoji}</span>
+        <div class="item-info">
+          <div class="item-nombre">${item.nombre}</div>
+          <div class="item-precio">$${item.precio.toLocaleString('es-CO')} × ${item.cantidad}</div>
+        </div>
+        <button class="item-eliminar" onclick="eliminarItem(${i})">✕</button>
+      </div>
+    `).join('');
+
+    totDiv.style.display = 'block';
+    document.getElementById('total-precio').textContent = '$' + total.toLocaleString('es-CO');
+  }
+
+  function abrirCarrito(e) {
+    if (e) e.preventDefault();
+    document.getElementById('modal-carrito').classList.add('abierto');
+  }
+
+  function cerrarCarrito(e) {
+    if (e && e.target !== document.getElementById('modal-carrito')) return;
+    document.getElementById('modal-carrito').classList.remove('abierto');
+  }
+
+  function filtrar(cat, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    if (btn) btn.classList.add('activo');
+
+    document.querySelectorAll('.producto-card').forEach(card => {
+      if (cat === 'todos' || card.dataset.cat === cat) {
+        card.classList.add('visible');
+      } else {
+        card.classList.remove('visible');
+      }
+    });
+
+    document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function mostrarNotif(msg) {
+    const n = document.getElementById('notif');
+    n.textContent = msg;
+    n.classList.add('show');
+    setTimeout(() => n.classList.remove('show'), 2500);
+  }
+
+  function enviarForm(e) {
+    e.preventDefault();
+    mostrarNotif('✓ Mensaje enviado. Te contactaremos pronto.');
+    e.target.reset();
+  }
+
+  function checkout() {
+    mostrarNotif('Próximamente: integración con pasarela de pago 💳');
+  }
+</script>
+</body>
+</html>
